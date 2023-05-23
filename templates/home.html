@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}User Auth{% endblock %}
+
+{% block content %}
+  <!-- As a heading -->
+  <nav class="navbar bg-dark nav-dark">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+</nav>`
+{% csrf_token %}
+  <h1 class="text-center text-success">B Learning Club</h1>
+  <div class="container-fluid">
+      {% if request.user.is_authenticated %}
+      <p class="text-success">You are loggout in</p>
+      <p class="text-success">Username: {{ request.user.username }}</p>
+      <a href="{% url 'logout_user' %}" type="button" class="btn btn-success btn-lg">Log Out</a>
+      <a href="{% url 'change_password' %}" type="button" class="btn btn-success btn-lg">Change Password</a>
+      {% else %}
+      <p class="text-danger h3">User is not logged in</p>
+      <a href="{% url 'register' %}" type="button" class="btn btn-success btn-lg">Register</a>
+      <a href="{% url 'login_user' %}" type="button" class="btn btn-success btn-lg">Log In</a>
+      {% endif %}
+  </div>
+  {% endblock %}
+
